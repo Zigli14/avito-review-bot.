@@ -24,15 +24,21 @@ ACCOUNTS = [
     {"login": "your_login2", "password": "your_password2"}
 ]
 
+import os
+
 def get_driver():
-    """Создаём драйвер с настройками прокси."""
+    """Создаёт драйвер с указанием пути к Chrome и ChromeDriver."""
+    chrome_path = os.path.expanduser("~/chrome/opt/google/chrome/chrome")
+    driver_path = os.path.expanduser("~/chrome/chromedriver")
+
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")  # Запуск в фоновом режиме
+    options.binary_location = chrome_path  # Указываем путь к portable Chrome
+    options.add_argument("--headless")  # Запуск без GUI
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    options.add_argument(f"--proxy-server={PROXY}")  # Если прокси не нужен, удали эту строку
-    
-    driver = webdriver.Chrome(options=options)
+    options.add_argument(f"--proxy-server={PROXY}")  # Если не нужен прокси, удали эту строку
+
+    driver = webdriver.Chrome(executable_path=driver_path, options=options)
     return driver
 
 def save_cookies(driver):
