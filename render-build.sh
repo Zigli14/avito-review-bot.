@@ -17,11 +17,10 @@ chmod +x chromedriver
 
 echo "Chrome и ChromeDriver установлены в ~/chrome"
 
-#!/usr/bin/env bash
-
+# Устанавливаем зависимости Python
 echo "Устанавливаем зависимости..."
 pip install --upgrade pip
+pip install -r requirements.txt  # <-- Эта строка важна!
 pip install gunicorn
 
-echo "Gunicorn установлен!"
-
+echo "Gunicorn и Flask установлены!"
