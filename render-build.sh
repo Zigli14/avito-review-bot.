@@ -16,3 +16,12 @@ rm chromedriver_linux64.zip
 chmod +x chromedriver
 
 echo "Chrome и ChromeDriver установлены в ~/chrome"
+
+#!/usr/bin/env bash
+
+echo "Устанавливаем зависимости..."
+pip install --upgrade pip
+pip install gunicorn
+
+echo "Gunicorn установлен!"
+
