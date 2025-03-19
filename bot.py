@@ -27,7 +27,11 @@ ACCOUNTS = [
 def get_driver():
     """Создаём драйвер с настройками прокси."""
     options = webdriver.ChromeOptions()
-    options.add_argument(f'--proxy-server={PROXY}')
+    options.add_argument("--headless")  # Запуск в фоновом режиме
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument(f"--proxy-server={PROXY}")  # Если прокси не нужен, удали эту строку
+    
     driver = webdriver.Chrome(options=options)
     return driver
 
